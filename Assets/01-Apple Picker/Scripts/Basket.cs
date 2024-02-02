@@ -1,13 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Basket : MonoBehaviour
 {
+    public TextMeshProUGUI scoreText;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        GameObject scoreGO = GameObject.Find("ScoreCounter");
+        scoreText = scoreGO.GetComponent<TextMeshProUGUI>();
+        scoreText.text = "0";
     }
 
     // Update is called once per frame
@@ -29,6 +35,10 @@ public class Basket : MonoBehaviour
         if (other.CompareTag("Apple"))
         {
             Destroy(other);
+
+            int score = int.Parse (scoreText.text);
+            score += 100;
+            scoreText.text = score.ToString();
         }
     }
 }
