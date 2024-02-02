@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class AppleTree : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class AppleTree : MonoBehaviour
 
     [SerializeField] float secondsBetweenAppleDrop = 1f;
 
+    [SerializeField] List<Material> appleMaterials = new();
 
     // Start is called before the first frame update
     void Start()
@@ -25,8 +27,13 @@ public class AppleTree : MonoBehaviour
 
     void DropApple()
     {
-        GameObject apple = Instantiate<GameObject>(applePrefab);
-        apple.transform.position = transform.position;
+        GameObject tApple = Instantiate<GameObject>(applePrefab);
+        tApple.transform.position = transform.position;
+
+        int randomInt = Random.Range(0, 3);
+        Material tAppleMat = appleMaterials[randomInt];
+        tApple.GetComponent<MeshRenderer>().material = tAppleMat;
+
         Invoke(nameof(DropApple), secondsBetweenAppleDrop);
     }
 
@@ -37,9 +44,13 @@ public class AppleTree : MonoBehaviour
         pos.x += speed * Time.deltaTime;
         transform.position = pos;
 
-        if (Mathf.Abs(pos.x) > edgeX)
+        if (pos.x > edgeX)
         {
-            speed = -speed;
+            speed = -Mathf.Abs(speed);
+        }
+        else if (pos.x < -edgeX)
+        {
+            speed = Mathf.Abs(speed);
         }
     }
 
