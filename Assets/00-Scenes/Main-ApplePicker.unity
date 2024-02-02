@@ -143,7 +143,7 @@ MonoBehaviour:
   applePrefab: {fileID: 5297355237325050952, guid: f10dfe6f06dec264998501d6c1405fad, type: 3}
   speed: 10
   edgeX: 20
-  directionChangeChance: 0.1
+  directionChangeChance: 0.02
   secondsBetweenAppleDrop: 1
 --- !u!1 &792234105
 GameObject:
@@ -339,6 +339,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 107130507588659012, guid: a3e5b8fdff8d16946a8c5396cc844238, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2167169184520929235, guid: a3e5b8fdff8d16946a8c5396cc844238, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4109849908486853737, guid: a3e5b8fdff8d16946a8c5396cc844238, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -382,6 +390,10 @@ PrefabInstance:
     - target: {fileID: 6400634159122152578, guid: a3e5b8fdff8d16946a8c5396cc844238, type: 3}
       propertyPath: m_Name
       value: AppleTree
+      objectReference: {fileID: 0}
+    - target: {fileID: 6400634159122152578, guid: a3e5b8fdff8d16946a8c5396cc844238, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
