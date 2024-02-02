@@ -6,16 +6,6 @@ using TMPro;
 
 public class Basket : MonoBehaviour
 {
-    public TextMeshProUGUI scoreText;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        GameObject scoreGO = GameObject.Find("ScoreCounter");
-        scoreText = scoreGO.GetComponent<TextMeshProUGUI>();
-        scoreText.text = "0";
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -36,9 +26,8 @@ public class Basket : MonoBehaviour
         {
             Destroy(other);
 
-            int score = int.Parse (scoreText.text);
-            score += 100;
-            scoreText.text = score.ToString();
+            ApplePicker apScript = Camera.main.GetComponent<ApplePicker>();
+            apScript.AddScore(100);
         }
     }
 }

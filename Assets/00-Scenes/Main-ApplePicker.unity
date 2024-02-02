@@ -357,6 +357,7 @@ MonoBehaviour:
   basketCount: 3
   basketBottomY: -14
   basketSpacingY: 2
+  scoreText: {fileID: 1560551709}
 --- !u!1 &1560551707
 GameObject:
   m_ObjectHideFlags: 0
