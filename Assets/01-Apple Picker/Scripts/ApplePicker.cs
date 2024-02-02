@@ -72,22 +72,19 @@ public class ApplePicker : MonoBehaviour
             HighScore.highScore = scoreCount;
         }
 
-        if (scoreCount > 1000)
+        if (apTree.speed < maxTreeSpeed)
         {
-            if (apTree.speed < maxTreeSpeed)
-            {
-                apTree.speed += Mathf.Sign(apTree.speed) * treeSpeedIncrement;
-            }
-            if (apTree.secondsBetweenAppleDrop > minAppleDelay)
-            {
-                apTree.secondsBetweenAppleDrop -= appleDelayIncrement;
-            }
+            apTree.speed += Mathf.Sign(apTree.speed) * treeSpeedIncrement;
+        }
+        if (apTree.secondsBetweenAppleDrop > minAppleDelay)
+        {
+            apTree.secondsBetweenAppleDrop -= appleDelayIncrement;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

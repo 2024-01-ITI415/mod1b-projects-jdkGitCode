@@ -56,7 +56,7 @@ public class AppleTree : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Random.value < directionChangeChance) 
+        if (Random.value < directionChangeChance)
         {
             speed = -speed;
         }
