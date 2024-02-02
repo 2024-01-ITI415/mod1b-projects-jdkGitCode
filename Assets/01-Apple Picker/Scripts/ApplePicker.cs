@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 
 public class ApplePicker : MonoBehaviour
@@ -47,12 +48,22 @@ public class ApplePicker : MonoBehaviour
 
         basketList.RemoveAt(basketIndex);
         Destroy(tBasketGO);
+
+        if (basketCount == 0)
+        {
+            SceneManager.LoadScene("Main-ApplePicker");
+        }
     }
 
     public void AddScore(int amount)
     {
         scoreCount += amount;
         scoreText.text = "Score: " + scoreCount.ToString();
+
+        if (scoreCount > HighScore.highScore)
+        {
+            HighScore.highScore = scoreCount;
+        }
     }
 
     // Update is called once per frame
