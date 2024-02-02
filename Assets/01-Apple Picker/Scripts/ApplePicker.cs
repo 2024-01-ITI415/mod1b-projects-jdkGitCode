@@ -9,14 +9,21 @@ public class ApplePicker : MonoBehaviour
 {
     [Header("Set in Inspector")]
 
-    [SerializeField] GameObject basketPrefab;
+    public GameObject basketPrefab;
     public List<GameObject> basketList;
-    [SerializeField] int numBaskets = 3;
-    [SerializeField] float basketBottomY = -14f;
-    [SerializeField] float basketSpacingY = 2f;
+    public int numBaskets = 3;
+    public float basketBottomY = -14f;
+    public float basketSpacingY = 2f;
 
-    [SerializeField] TextMeshProUGUI scoreText;
-    private int scoreCount;
+    public TextMeshProUGUI scoreText;
+    public int scoreCount;
+
+    public AppleTree apTree;
+    public float treeSpeedIncrement = .05f;
+    public float maxTreeSpeed = 45f;
+    public float appleDelayIncrement = .005f;
+    public float minAppleDelay = .2f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -63,6 +70,18 @@ public class ApplePicker : MonoBehaviour
         if (scoreCount > HighScore.highScore)
         {
             HighScore.highScore = scoreCount;
+        }
+
+        if (scoreCount > 1000)
+        {
+            if (apTree.speed < maxTreeSpeed)
+            {
+                apTree.speed += Mathf.Sign(apTree.speed) * treeSpeedIncrement;
+            }
+            if (apTree.secondsBetweenAppleDrop > minAppleDelay)
+            {
+                apTree.secondsBetweenAppleDrop -= appleDelayIncrement;
+            }
         }
     }
 

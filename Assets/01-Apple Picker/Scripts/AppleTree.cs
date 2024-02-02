@@ -7,17 +7,17 @@ public class AppleTree : MonoBehaviour
 {
     [Header("Set in Inspector")]
 
-    [SerializeField] GameObject applePrefab;
+    public GameObject applePrefab;
 
-    [SerializeField] float speed = 1f;
+    public float speed = 1f;
 
-    [SerializeField] float edgeX = 10f;
+    public float edgeX = 10f;
 
-    [SerializeField] float directionChangeChance = 0.1f;
+    public float directionChangeChance = 0.1f;
 
-    [SerializeField] float secondsBetweenAppleDrop = 1f;
+    public float secondsBetweenAppleDrop = 1f;
 
-    [SerializeField] List<Material> appleMaterials = new();
+    public List<Material> appleMaterials = new();
 
     // Start is called before the first frame update
     void Start()
