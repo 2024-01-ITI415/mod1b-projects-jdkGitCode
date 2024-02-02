@@ -9,6 +9,7 @@ public class ApplePicker : MonoBehaviour
     [Header("Set in Inspector")]
 
     [SerializeField] GameObject basketPrefab;
+    [SerializeField] List<GameObject> basketList;
     [SerializeField] int basketCount = 3;
     [SerializeField] float basketBottomY = -14f;
     [SerializeField] float basketSpacingY = 2f;
@@ -19,12 +20,15 @@ public class ApplePicker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        basketList = new List<GameObject>();
+
         for (int i = 0; i < basketCount; i++)
         {
             GameObject tbasketGO = Instantiate<GameObject>(basketPrefab);
             Vector3 pos = Vector3.zero;
             pos.y = basketBottomY + (basketSpacingY * i);
             tbasketGO.transform.position = pos;
+            basketList.Add(tbasketGO);
         }
 
         scoreText.text = "Score: 0";
@@ -37,6 +41,12 @@ public class ApplePicker : MonoBehaviour
         {
             Destroy(tApple);
         }
+
+        int basketIndex = basketCount - 1;
+        GameObject tBasketGO = basketList[basketIndex];
+
+        basketList.RemoveAt(basketIndex);
+        Destroy(tBasketGO);
     }
 
     public void AddScore(int amount)
