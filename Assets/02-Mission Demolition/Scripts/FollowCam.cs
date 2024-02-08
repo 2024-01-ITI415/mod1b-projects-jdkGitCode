@@ -11,7 +11,7 @@ public class FollowCam : MonoBehaviour
 
     private void Awake()
     {
-        camZ = this.transform.localScale.z;
+        camZ = this.transform.position.z;
     }
 
     private void FixedUpdate()
