@@ -9,6 +9,7 @@ public class FollowCam : MonoBehaviour
     [Header("Set in inspector")]
     public float easing = 0.05f;
     public Vector2 minXY = Vector2.zero;
+    public float cameraTimer = 12f;
 
     [Header("Set dynamically")]
     public float camZ;
@@ -32,11 +33,23 @@ public class FollowCam : MonoBehaviour
 
             if (POI.tag == "Projectile")
             {
-                if (POI.GetComponent<Rigidbody>().IsSleeping())
+                //float cameraTimer = 10f;
+                if (POI.GetComponent<Rigidbody>().IsSleeping() || cameraTimer <= 0)
                 {
                     POI = null;
+                    cameraTimer = 10;
                     return;
                 }
+
+                if (Input.GetMouseButtonUp(0))
+                {
+                    if (cameraTimer <= 8)
+                    {
+                        POI = null;
+                        cameraTimer = 10;
+                    }
+                }
+                    cameraTimer -= Time.deltaTime;
             }
         }
 
