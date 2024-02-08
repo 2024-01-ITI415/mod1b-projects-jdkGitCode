@@ -4,22 +4,31 @@ using UnityEngine;
 
 public class Slingshot : MonoBehaviour
 {
+    static public Slingshot S;
+
     [Header("Set in inspector")]
     public GameObject prefabProjectile;
     public float velocityMulti = 8f;
 
     [Header("Set dynamically")]
     public GameObject launchPoint;
-    public Vector3 launchPos;
     public GameObject projectile;
+    public Vector3 launchPos;
     private Rigidbody projectileRB;
-
     public bool aimingMode;
 
- 
+    static public Vector3 LAUNCH_POS
+    {
+        get
+        {
+            if (S == null) return Vector3.zero;
+            return S.launchPos;
+        }
+    }
 
     private void Awake()
     {
+        S = this;
         Transform launchPointTrans = transform.Find("LaunchPoint");
         launchPoint = launchPointTrans.gameObject;
         launchPoint.SetActive(false);
