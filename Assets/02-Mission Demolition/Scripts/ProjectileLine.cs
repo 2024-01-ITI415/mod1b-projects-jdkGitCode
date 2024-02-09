@@ -94,7 +94,7 @@ public class ProjectileLine : MonoBehaviour
     {
         if (poi == null)
         {
-            if (FollowCam.POI != null)
+            if (FollowCam.POI != FollowCam.slingshotView)
             {
                 if (FollowCam.POI.tag == "Projectile")
                 {
@@ -106,7 +106,7 @@ public class ProjectileLine : MonoBehaviour
         }
 
         AddPoint();
-        if (FollowCam.POI == null)
+        if (FollowCam.POI == FollowCam.slingshotView)
         {
             poi = null;
         }

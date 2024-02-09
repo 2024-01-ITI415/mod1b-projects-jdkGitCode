@@ -5,25 +5,32 @@ using UnityEngine;
 public class FollowCam : MonoBehaviour
 {
     static public GameObject POI;
+    public GameObject Debug_POI;
+    public static GameObject slingshotView;
 
     [Header("Set in inspector")]
     public float easing = 0.05f;
     public Vector2 minXY = Vector2.zero;
-    public float cameraTimer = 12f;
+    public float maxCameraTimer = 12f;
 
     [Header("Set dynamically")]
     public float camZ;
+    public float cameraTimer;
 
     private void Awake()
     {
         camZ = this.transform.position.z;
+        slingshotView = GameObject.Find("ViewSlingshot");
+        cameraTimer = maxCameraTimer;
     }
 
     private void FixedUpdate()
     {
+        Debug_POI =  POI;
+
         Vector3 destination;
 
-        if (POI == null)
+        if (POI == slingshotView)
         {
             destination = Vector3.zero;
         }
@@ -31,22 +38,21 @@ public class FollowCam : MonoBehaviour
         {
             destination = POI.transform.position;
 
-            if (POI.tag == "Projectile")
+            if (POI.CompareTag("Projectile"))
             {
-                //float cameraTimer = 10f;
                 if (POI.GetComponent<Rigidbody>().IsSleeping() || cameraTimer <= 0)
                 {
-                    POI = null;
-                    cameraTimer = 10;
+                    POI = slingshotView;
+                    cameraTimer = maxCameraTimer;
                     return;
                 }
 
                 if (Input.GetMouseButtonUp(0))
                 {
-                    if (cameraTimer <= 8)
+                    if (cameraTimer <= maxCameraTimer - 2)
                     {
-                        POI = null;
-                        cameraTimer = 10;
+                        POI = slingshotView;
+                        cameraTimer = maxCameraTimer;
                     }
                 }
                     cameraTimer -= Time.deltaTime;

@@ -37,19 +37,19 @@ public class Slingshot : MonoBehaviour
 
     private void OnMouseEnter()
     {
-        if (FollowCam.POI == null)
+        if (!FollowCam.POI.CompareTag("Projectile"))
             launchPoint.SetActive(true);
     }
 
     private void OnMouseExit()
     {
-        if (FollowCam.POI == null)
+        if (!FollowCam.POI.CompareTag("Projectile"))
             launchPoint.SetActive(false);
     }
 
     private void OnMouseDown()
     {
-        if (FollowCam.POI == null)
+        if (!FollowCam.POI.CompareTag("Projectile"))
         {
             aimingMode = true;
 
