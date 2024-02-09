@@ -269,7 +269,7 @@ GameObject:
   - component: {fileID: 378874011}
   - component: {fileID: 378874010}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Button Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -620,6 +620,7 @@ GameObject:
   - component: {fileID: 792234107}
   - component: {fileID: 792234106}
   - component: {fileID: 792234109}
+  - component: {fileID: 792234110}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -717,6 +718,33 @@ MonoBehaviour:
   minXY: {x: 0, y: 0}
   cameraTimer: 10
   camZ: 0
+--- !u!114 &792234110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792234105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c5696ebd1cb9e944beb535ad7b14830, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uitLevel: {fileID: 520285157}
+  uitShots: {fileID: 286035656}
+  uitButton: {fileID: 378874010}
+  castlePos: {x: 50, y: -9.5, z: 0}
+  castles:
+  - {fileID: 7298220190443506818, guid: dd370c725dc22e44b9420dbbf06317c0, type: 3}
+  - {fileID: 7298220190443506818, guid: 0beedf9299c300d45953874f04782f56, type: 3}
+  - {fileID: 7298220190443506818, guid: cc8ca616b7bd99c42bf8d08119e29501, type: 3}
+  - {fileID: 7298220190443506818, guid: 685a803c582120d4f8f4645cd22628ce, type: 3}
+  level: 0
+  levelMax: 0
+  shotsTaken: 0
+  castle: {fileID: 0}
+  mode: 0
+  showing: Show Slingshot
 --- !u!1 &800384860
 GameObject:
   m_ObjectHideFlags: 0
@@ -1688,7 +1716,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2072338124}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 792234110}
+        m_TargetAssemblyTypeName: MissionDemolition, Assembly-CSharp
+        m_MethodName: SwitchView
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2072338124
 MonoBehaviour:
   m_ObjectHideFlags: 0
