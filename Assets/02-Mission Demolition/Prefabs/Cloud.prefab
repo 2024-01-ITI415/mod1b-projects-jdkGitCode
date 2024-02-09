@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cloudSphere: {fileID: 346593318895693501, guid: 50cf6d933b7d9c44c89de79b437a38f3, type: 3}
-  numSpheresMin: 6
-  numSpheresMax: 10
+  numSpheresMin: 4
+  numSpheresMax: 6
   sphereOffsetScale: {x: 5, y: 2, z: 1}
   sphereScaleRangeX: {x: 4, y: 8}
   sphereScaleRangeY: {x: 3, y: 4}
