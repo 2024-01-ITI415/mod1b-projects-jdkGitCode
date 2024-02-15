@@ -15,7 +15,6 @@ public class CameraController : MonoBehaviour
     {
         tempPos = playerTransform.position;
         tempPos.y = transform.position.y;
-        //tempPos.z -= 2;
         transform.position = tempPos;
     }
 }

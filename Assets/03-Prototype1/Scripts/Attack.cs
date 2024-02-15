@@ -5,6 +5,7 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     [Header("Set in Editor")]
+    public GameObject projectileContainer;
     public GameObject projectilePrefab;
     public float attackRate = .5f;
     public float projectileSpeed = 2f;
@@ -39,6 +40,7 @@ public class Attack : MonoBehaviour
 
             GameObject projectile = Instantiate(projectilePrefab);
             projectile.transform.position = transform.position;
+            projectile.transform.parent = projectileContainer.transform;
 
             Rigidbody projectileRB = projectile.GetComponent<Rigidbody>();
 

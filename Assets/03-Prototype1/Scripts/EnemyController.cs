@@ -8,6 +8,7 @@ public class EnemyController : MonoBehaviour
     public Transform playerTransform;
     public Transform enemyTransform;
     public Rigidbody enemyRB;
+    public float enemyClass;
 
     [Header("Set in Editor")]
     public float moveSpeed = 3f;
@@ -26,5 +27,20 @@ public class EnemyController : MonoBehaviour
         direction.Normalize();
 
         enemyRB.velocity = direction * moveSpeed;
+    }
+
+    public void HitByProjectile()
+    {
+        if (enemyClass == 0)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            //this will spawn additional smaller enemies
+        }
+
+        //Spawns in xp collectible after enemy dies
+
     }
 }
