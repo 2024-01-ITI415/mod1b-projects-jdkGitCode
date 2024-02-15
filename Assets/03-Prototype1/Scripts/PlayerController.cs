@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //Moves player based on axis inputs (arrow keys or wasd)
         Vector3 velocityT = Vector3.zero;
 
         if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0)
@@ -38,6 +39,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        //When the player collides with an enemy, for now it resets the scene until more UI is implemented
         if (collision.gameObject.CompareTag("Enemy"))
         {
             SceneManager.LoadScene("Main-Prototype 1");

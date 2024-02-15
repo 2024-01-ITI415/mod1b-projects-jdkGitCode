@@ -23,6 +23,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //Gets direction towards player and moves towards it
         Vector3 direction = (playerTransform.position - enemyTransform.position);
         direction.Normalize();
 
@@ -31,6 +32,7 @@ public class EnemyController : MonoBehaviour
 
     public void HitByProjectile()
     {
+        //When hit by a projectile will either die if class 0 or split into smaller class enemies
         if (enemyClass == 0)
         {
             Destroy(this.gameObject);
