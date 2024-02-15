@@ -149,6 +149,8 @@ MonoBehaviour:
   attackRate: 0.5
   projectileSpeed: 2
   attackCooldown: 0
+  mouseDeltaCheck: {x: 0, y: 0, z: 0}
+  mousePosCheck: {x: 0, y: 0, z: 0}
 --- !u!1 &572690995
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,8 +317,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5.5
+  orthographic: 1
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -992,6 +994,10 @@ PrefabInstance:
       propertyPath: enemyContainer
       value: 
       objectReference: {fileID: 1216641974}
+    - target: {fileID: 1219384197317940575, guid: 5e6489ecfdafacf4ea8d26821b3b0a82, type: 3}
+      propertyPath: spawnIntervalInSeconds
+      value: 5000
+      objectReference: {fileID: 0}
     - target: {fileID: 2126744479220822533, guid: 5e6489ecfdafacf4ea8d26821b3b0a82, type: 3}
       propertyPath: m_Name
       value: Player

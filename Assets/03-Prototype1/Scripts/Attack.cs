@@ -11,6 +11,8 @@ public class Attack : MonoBehaviour
 
     [Header("Changed in Scipt")]
     public float attackCooldown;
+    public Vector3 mouseDeltaCheck;
+    public Vector3 mousePosCheck;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,10 +22,16 @@ public class Attack : MonoBehaviour
     void Update()
     {
         Vector3 mousePos2D = Input.mousePosition;
-        mousePos2D.z = -Camera.main.transform.position.z;
+        mousePos2D.z = Camera.main.transform.position.z;
         Vector3 mousePos3D = Camera.main.ScreenToWorldPoint(mousePos2D);
+        mousePos3D.y = 1.1f;
 
         Vector3 mouseDelta = mousePos3D - transform.position;
+        mouseDelta.Normalize();
+
+        mousePosCheck = mousePos3D;
+        mouseDeltaCheck = mouseDelta;
+
 
         if (Input.GetMouseButtonDown(0) && attackCooldown <= 0)
         {
@@ -31,8 +39,10 @@ public class Attack : MonoBehaviour
 
             GameObject projectile = Instantiate(projectilePrefab);
             projectile.transform.position = transform.position;
+
             Rigidbody projectileRB = projectile.GetComponent<Rigidbody>();
-            projectileRB.velocity = -mouseDelta * projectileSpeed;
+
+            projectileRB.velocity = mouseDelta * projectileSpeed;
         }
 
         attackCooldown -= Time.deltaTime;
