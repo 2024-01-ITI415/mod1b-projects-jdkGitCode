@@ -9,8 +9,10 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        //Counts down lifespan
         lifespan -= Time.deltaTime;
 
+        //At 0 lifespan kills the projectile
         if (lifespan < 0)
         {
             Destroy(this.gameObject);
@@ -19,6 +21,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //When it hits an enemy the projectile kills itself and triggers enemy's on hit script
         if (other.CompareTag("Enemy"))
         {
             EnemyController eControl = other.GetComponent<EnemyController>();
