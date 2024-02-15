@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("Change Dynamically")]
+    [Header("Changed in Scipt")]
     public Rigidbody playerRB;
 
     [Header("Set in Editor")]
@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector3 velocityT = Vector3.zero;
 

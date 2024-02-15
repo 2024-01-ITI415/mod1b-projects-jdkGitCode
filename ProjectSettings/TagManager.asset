@@ -7,6 +7,7 @@ TagManager:
   - Apple
   - Projectile
   - Slingshot
+  - Aura
   layers:
   - Default
   - TransparentFX
