@@ -12,7 +12,8 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemyContainer;
     public GameObject enemyPrefab;
     public float spawnIntervalInSeconds = 5f;
-    public float spawnRadius = 30;
+
+    public Bounds debugBounds;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,16 +30,23 @@ public class EnemySpawner : MonoBehaviour
         tEnemy.transform.parent = enemyContainer.transform;
         Rigidbody tEnemyRB = tEnemy.GetComponent<Rigidbody>();
 
-        Vector3 spawnPosition = Random.insideUnitCircle * spawnRadius;
-        spawnPosition += transform.position;
+        float spawnPositionX = Random.Range(-33, 33);
+        float spawnPositionZ = Random.Range(-33, 33);
+        Vector3 spawnPosition = new(spawnPositionX, 1.1f, spawnPositionZ);
+
+        debugBounds = nonSpawnArea.bounds;
+        
         //Debug.Log("spawn pos should be " + spawnPosition);
+
         //attempt count for debugging so it doesn't create an infinite loop
         int attemptCount = 0;
         //If the random spot is too close to the player it tries to pick a new random spot
         while (nonSpawnArea.bounds.Contains(spawnPosition))
         {
-            spawnPosition = Random.insideUnitCircle * spawnRadius;
-            
+            spawnPositionX = Random.Range(-33, 33);
+            spawnPositionZ = Random.Range(-33, 33);
+            spawnPosition = new(spawnPositionX, 1.1f, spawnPositionZ);
+
             Debug.Log("shouldn't spawn here!");
             //Too many invalid spots breaks the loop
             attemptCount++;
