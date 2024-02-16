@@ -144,7 +144,7 @@ public class PrototypeGame : MonoBehaviour
         FinishLevelUp();
     }
 
-    //Button funciton for full heal
+    //Button function for full heal
     public void FullyHeal()
     {
         playerController.currentHealth = playerController.maxHealth;
