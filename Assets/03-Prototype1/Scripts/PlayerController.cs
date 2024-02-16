@@ -7,13 +7,16 @@ public class PlayerController : MonoBehaviour
 {
     [Header("Changed in Scipt")]
     public Rigidbody playerRB;
+    public float currentHealth;
 
     [Header("Set in Editor")]
     public float moveSpeed = 1f;
+    public float maxHealth = 3;
     // Start is called before the first frame update
     void Start()
     {
         playerRB = GetComponent<Rigidbody>();
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -42,7 +45,8 @@ public class PlayerController : MonoBehaviour
         //When the player collides with an enemy, for now it resets the scene until more UI is implemented
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            SceneManager.LoadScene("Main-Prototype 1");
+            currentHealth--;
+            PrototypeGame.instance.OnPlayerHit();
         }
     }
 }

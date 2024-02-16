@@ -7,13 +7,13 @@ public class EnemySpawner : MonoBehaviour
 {
     [Header("Changed in Scipt")]
     public Collider nonSpawnArea;
+    private List<GameObject> enemyList = new();
 
     [Header("Set in Editor")]
     public GameObject enemyContainer;
     public GameObject enemyPrefab;
     public float spawnIntervalInSeconds = 5f;
 
-    public Bounds debugBounds;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,16 +27,12 @@ public class EnemySpawner : MonoBehaviour
     {
         //Creates an enemy and sets its position to a random spot within a radius of the player
         GameObject tEnemy = Instantiate<GameObject>(enemyPrefab);
+        enemyList.Add(tEnemy);
         tEnemy.transform.parent = enemyContainer.transform;
-        Rigidbody tEnemyRB = tEnemy.GetComponent<Rigidbody>();
 
         float spawnPositionX = Random.Range(-33, 33);
         float spawnPositionZ = Random.Range(-33, 33);
         Vector3 spawnPosition = new(spawnPositionX, 1.1f, spawnPositionZ);
-
-        debugBounds = nonSpawnArea.bounds;
-        
-        //Debug.Log("spawn pos should be " + spawnPosition);
 
         //attempt count for debugging so it doesn't create an infinite loop
         int attemptCount = 0;
@@ -47,12 +43,11 @@ public class EnemySpawner : MonoBehaviour
             spawnPositionZ = Random.Range(-33, 33);
             spawnPosition = new(spawnPositionX, 1.1f, spawnPositionZ);
 
-            Debug.Log("shouldn't spawn here!");
             //Too many invalid spots breaks the loop
             attemptCount++;
-            if (attemptCount > 30)
+            if (attemptCount > 100)
             {
-                Debug.Log("Too many spawn attempts");
+                //Debug.Log("Too many spawn attempts");
                 break;
             }
         }
@@ -61,5 +56,15 @@ public class EnemySpawner : MonoBehaviour
 
         //Reinvokes the SpawnEnemy method to spawn the next one
         Invoke(nameof(SpawnEnemy), spawnIntervalInSeconds);
+    }
+
+    public void PurgeEnemies()
+    {
+        for (int i = 0;i<enemyList.Count;i++)
+        {
+            GameObject tEnemy = enemyList[i];
+            enemyList.RemoveAt(i);
+            Destroy(tEnemy);
+        }
     }
 }

@@ -11,7 +11,9 @@ public class EnemyController : MonoBehaviour
     public float enemyClass;
 
     [Header("Set in Editor")]
+    public GameObject xpPrefab;
     public float moveSpeed = 3f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +37,10 @@ public class EnemyController : MonoBehaviour
         //When hit by a projectile will either die if class 0 or split into smaller class enemies
         if (enemyClass == 0)
         {
+            GameObject tXP = Instantiate(xpPrefab);
+            tXP.transform.position = enemyTransform.position;
+            tXP.transform.parent = GameObject.Find("XP Container").transform;
+
             Destroy(this.gameObject);
         }
         else
