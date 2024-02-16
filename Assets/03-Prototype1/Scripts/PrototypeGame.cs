@@ -23,6 +23,7 @@ public class PrototypeGame : MonoBehaviour
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI timerText;
     public List<Button> LevelUpButtons = new();
+    public GameObject gameOverUI;
     public GameObject player;
     public EnemySpawner enemySpawner;
     public float expScalingAmount = 3;
@@ -41,6 +42,7 @@ public class PrototypeGame : MonoBehaviour
         {
             button.gameObject.SetActive(false);
         }
+        gameOverUI.SetActive(false);
         UpdateHud();
 
         Invoke(nameof(IncreaseDefficulty), 1f);
@@ -52,19 +54,25 @@ public class PrototypeGame : MonoBehaviour
         timerText.text = "Timer: " + Time.time.ToString("#.00");
     }
 
+    [Header("Difficulty Scaling")]
+    public float enemyMoveSpeedScaling = .1f;
+    public float enemySpawnRateScaling = .1f;
+    public float difficultyScalingIntervalInSeconds = 3;
+    //Slightly increases enemy stats and then reinvokes function in 3 seconds
     void IncreaseDefficulty()
     {
         if (enemySpawner.enemyMoveSpeed < 15)
         {
-            enemySpawner.enemyMoveSpeed += .1f;
+            enemySpawner.enemyMoveSpeed += enemyMoveSpeedScaling;
         }
         if (enemySpawner.spawnIntervalInSeconds > .5)
         {
-            enemySpawner.spawnIntervalInSeconds -= .1f;
+            enemySpawner.spawnIntervalInSeconds -= enemySpawnRateScaling;
         }
-        Invoke(nameof(IncreaseDefficulty), 3f);
+        Invoke(nameof(IncreaseDefficulty), difficultyScalingIntervalInSeconds);
     }
 
+    //Updates all of the HUD text
     public void UpdateHud()
     {
         levelText.text = "Level: " + level;
@@ -90,22 +98,30 @@ public class PrototypeGame : MonoBehaviour
         UpdateHud();
     }
 
+    [Header("Level Up Multipliers")]
+    public float playerMoveSpeedMulti = 1.1f;
+    public float playerFireRateMulti = .9f;
     void LevelUp()
     {
+        //Increases Level and resets exp
         level++;
         currentEXP -= maxExp;
         maxExp += expScalingAmount;
+
+        //Activates the levelUp buttons and pauses the game
         foreach (Button button in LevelUpButtons)
         {
             button.gameObject.SetActive(true);
         }
         Time.timeScale = 0;
     }
+
+    //Button funciton for movement speed increase
     public void IncreaseMoveSpeed()
     {
         if (playerController.moveSpeed < 20)
         {
-            playerController.moveSpeed *= 1.1f;
+            playerController.moveSpeed *= playerMoveSpeedMulti;
             if (playerController.moveSpeed > 20)
             {
                 LevelUpButtons[0].GetComponentInChildren<TextMeshProUGUI>().text = "Movement Speed Maxed Out";
@@ -113,11 +129,13 @@ public class PrototypeGame : MonoBehaviour
         }
         FinishLevelUp();
     }
+
+    //Button funciton for fire rate increase
     public void IncreaseFireRate()
     {
         if (playerAttack.fireRate > .1)
         {
-            playerAttack.fireRate *= .9f;
+            playerAttack.fireRate *= playerFireRateMulti;
             if (playerController.moveSpeed < .1)
             {
                 LevelUpButtons[1].GetComponentInChildren<TextMeshProUGUI>().text = "Fire Rate Maxed Out";
@@ -125,11 +143,15 @@ public class PrototypeGame : MonoBehaviour
         }
         FinishLevelUp();
     }
+
+    //Button funciton for full heal
     public void FullyHeal()
     {
         playerController.currentHealth = playerController.maxHealth;
         FinishLevelUp();
     }
+
+    //Updates HUD, deactivates buttons, and unpauses game
     private void FinishLevelUp()
     {
         UpdateHud();
@@ -140,8 +162,22 @@ public class PrototypeGame : MonoBehaviour
         Time.timeScale = 1;
     }
 
+
     void GameOver()
     {
+        gameOverUI.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void Restart()
+    {
+        Time.timeScale = 1;
         SceneManager.LoadScene("Main-Prototype 1");
+    }
+
+    public void MainMenu()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("SceneMain");
     }
 }
