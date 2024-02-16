@@ -7,19 +7,19 @@ public class EnemySpawner : MonoBehaviour
 {
     [Header("Changed in Scipt")]
     public Collider nonSpawnArea;
-    private List<GameObject> enemyList = new();
 
     [Header("Set in Editor")]
     public GameObject enemyContainer;
     public GameObject enemyPrefab;
     public float spawnIntervalInSeconds = 5f;
+    public float enemyMoveSpeed = 3;
 
     // Start is called before the first frame update
     void Start()
     {
         //Gets the no spawning area collider and invokes SpawnEnemy
         nonSpawnArea = GameObject.Find("Non-Spawn Area").GetComponent<Collider>();
-        Invoke(nameof(SpawnEnemy), 2f);
+        Invoke(nameof(SpawnEnemy), 1f);
     }
 
     // Update is called once per frame
@@ -54,17 +54,19 @@ public class EnemySpawner : MonoBehaviour
         spawnPosition.y = 1.1f;
         tEnemy.transform.position = spawnPosition;
 
+        tEnemy.GetComponent<EnemyController>().moveSpeed = enemyMoveSpeed;
+
         //Reinvokes the SpawnEnemy method to spawn the next one
         Invoke(nameof(SpawnEnemy), spawnIntervalInSeconds);
     }
 
+    //Function for when the player gets hit to kill all active enemies
     public void PurgeEnemies()
     {
-        for (int i = 0;i<enemyList.Count;i++)
+        GameObject[] enemyList = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach (GameObject enemy in enemyList)
         {
-            GameObject tEnemy = enemyList[i];
-            enemyList.RemoveAt(i);
-            Destroy(tEnemy);
+            Destroy(enemy);
         }
     }
 }

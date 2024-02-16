@@ -12,11 +12,16 @@ public class PlayerController : MonoBehaviour
     [Header("Set in Editor")]
     public float moveSpeed = 1f;
     public float maxHealth = 3;
+
+    private void Awake()
+    {
+        currentHealth = maxHealth;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         playerRB = GetComponent<Rigidbody>();
-        currentHealth = maxHealth;
     }
 
     // Update is called once per frame

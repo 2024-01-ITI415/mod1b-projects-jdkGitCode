@@ -7,7 +7,7 @@ public class Attack : MonoBehaviour
     [Header("Set in Editor")]
     public GameObject projectileContainer;
     public GameObject projectilePrefab;
-    public float attackRate = .5f;
+    public float fireRate = .5f;
     public float projectileSpeed = 2f;
 
     [Header("Changed in Scipt")]
@@ -33,10 +33,10 @@ public class Attack : MonoBehaviour
         mouseDeltaCheck = mouseDelta;
 
         //Checks for left click and if attack is off cooldown
-        if (Input.GetMouseButtonDown(0) && attackCooldown <= 0)
+        if (Input.GetMouseButton(0) && attackCooldown <= 0)
         {
             //resets cooldown timer
-            attackCooldown = attackRate;
+            attackCooldown = fireRate;
 
             //creates projectile and gives it a velocity towards the mouse
             GameObject projectile = Instantiate(projectilePrefab);

@@ -8,11 +8,10 @@ public class EnemyController : MonoBehaviour
     public Transform playerTransform;
     public Transform enemyTransform;
     public Rigidbody enemyRB;
-    public float enemyClass;
+    public float moveSpeed;
 
     [Header("Set in Editor")]
     public GameObject xpPrefab;
-    public float moveSpeed = 3f;
 
     // Start is called before the first frame update
     void Start()
@@ -35,20 +34,10 @@ public class EnemyController : MonoBehaviour
     public void HitByProjectile()
     {
         //When hit by a projectile will either die if class 0 or split into smaller class enemies
-        if (enemyClass == 0)
-        {
-            GameObject tXP = Instantiate(xpPrefab);
-            tXP.transform.position = enemyTransform.position;
-            tXP.transform.parent = GameObject.Find("XP Container").transform;
+        GameObject tXP = Instantiate(xpPrefab);
+        tXP.transform.position = enemyTransform.position;
+        tXP.transform.parent = GameObject.Find("XP Container").transform;
 
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            //this will spawn additional smaller enemies
-        }
-
-        //Spawns in xp collectible after enemy dies
-
+        Destroy(this.gameObject);
     }
 }
