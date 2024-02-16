@@ -13,11 +13,6 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 1f;
     public float maxHealth = 3;
 
-    private void Awake()
-    {
-        currentHealth = maxHealth;
-    }
-
     // Start is called before the first frame update
     void Start()
     {

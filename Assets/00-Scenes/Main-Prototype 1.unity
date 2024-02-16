@@ -1216,10 +1216,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nonSpawnArea: {fileID: 1172834659}
-  enemyList: []
   enemyContainer: {fileID: 1216641974}
   enemyPrefab: {fileID: 5864823703065619733, guid: af73818803c6d3d49bd73ec18618b66e, type: 3}
-  spawnIntervalInSeconds: 5
+  spawnIntervalInSeconds: 3
+  enemyMoveSpeed: 3
 --- !u!4 &827691688
 Transform:
   m_ObjectHideFlags: 0
@@ -2768,6 +2768,10 @@ PrefabInstance:
     - target: {fileID: 2126744479220822533, guid: 5e6489ecfdafacf4ea8d26821b3b0a82, type: 3}
       propertyPath: m_TagString
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5598448063938767455, guid: 5e6489ecfdafacf4ea8d26821b3b0a82, type: 3}
+      propertyPath: currentHealth
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

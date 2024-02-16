@@ -27,7 +27,6 @@ public class EnemySpawner : MonoBehaviour
     {
         //Creates an enemy and sets its position to a random spot within a radius of the player
         GameObject tEnemy = Instantiate<GameObject>(enemyPrefab);
-        enemyList.Add(tEnemy);
         tEnemy.transform.parent = enemyContainer.transform;
 
         float spawnPositionX = Random.Range(-33, 33);

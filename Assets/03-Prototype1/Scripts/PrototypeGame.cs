@@ -56,7 +56,7 @@ public class PrototypeGame : MonoBehaviour
     {
         if (enemySpawner.enemyMoveSpeed < 15)
         {
-            enemySpawner.enemyMoveSpeed += .2f;
+            enemySpawner.enemyMoveSpeed += .1f;
         }
         if (enemySpawner.spawnIntervalInSeconds > .5)
         {
