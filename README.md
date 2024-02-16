@@ -1,2 +1,4 @@
 # Module1-Projects
  ApplePicker, Mission Demolition and Prototype 1
+
+For Prototype 1 I was trying to emulate Vampire Survivors and other similiar games. I created a system where enemies continously spawn around the player and move towards them and the player has to defeat them before the enemies touch them. Killing enemies drops xp on the ground which when enough is picked up allows you to increase the player's stats. My goal was to try and make a very simple version of the hoard battler game and although I could have added some more to the game I am satisfied with the scope I kept it at. The main part I feel the game is lacking is in aethetics, the appearance of everything is very simple and I didn't implement sounds effects which leaves the game feeling very bland aethetically. 
