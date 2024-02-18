@@ -12,8 +12,14 @@ public class Attack : MonoBehaviour
 
     [Header("Changed in Scipt")]
     public float attackCooldown;
+    public float moddedFireRate;
     public Vector3 mouseDeltaCheck;
     public Vector3 mousePosCheck;
+
+    private void Start()
+    {
+        moddedFireRate = fireRate;
+    }
 
     // Update is called once per frame
     void Update()
@@ -36,7 +42,7 @@ public class Attack : MonoBehaviour
         if (Input.GetMouseButton(0) && attackCooldown <= 0)
         {
             //resets cooldown timer
-            attackCooldown = fireRate;
+            attackCooldown = moddedFireRate;
 
             //creates projectile and gives it a velocity towards the mouse
             GameObject projectile = Instantiate(projectilePrefab);

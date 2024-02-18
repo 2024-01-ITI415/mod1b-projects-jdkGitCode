@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [Header("Changed in Scipt")]
     public Rigidbody playerRB;
     public float currentHealth;
+    public float moddedMoveSpeed;
 
     [Header("Set in Editor")]
     public float moveSpeed = 1f;
@@ -17,6 +18,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerRB = GetComponent<Rigidbody>();
+        moddedMoveSpeed = moveSpeed;
     }
 
     // Update is called once per frame
@@ -27,13 +29,13 @@ public class PlayerController : MonoBehaviour
 
         if (Mathf.Abs(Input.GetAxis("Horizontal")) > 0)
         {
-            velocityT.x += Input.GetAxis("Horizontal") * moveSpeed;
+            velocityT.x += Input.GetAxis("Horizontal") * moddedMoveSpeed;
 
         }
 
         if (Mathf.Abs(Input.GetAxis("Vertical")) > 0)
         {
-            velocityT.z += Input.GetAxis("Vertical") * moveSpeed;
+            velocityT.z += Input.GetAxis("Vertical") * moddedMoveSpeed;
 
         }
 

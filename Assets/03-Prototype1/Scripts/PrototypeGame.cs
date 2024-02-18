@@ -51,7 +51,8 @@ public class PrototypeGame : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timerText.text = "Timer: " + Time.time.ToString("#.00");
+        currentTime += Time.deltaTime;
+        timerText.text = "Timer: " + currentTime.ToString("#.00");
     }
 
     [Header("Difficulty Scaling")]
@@ -61,13 +62,13 @@ public class PrototypeGame : MonoBehaviour
     //Slightly increases enemy stats and then reinvokes function in 3 seconds
     void IncreaseDefficulty()
     {
-        if (enemySpawner.enemyMoveSpeed < 15)
+        if (enemySpawner.moddedEnemyMoveSpeed < 15)
         {
-            enemySpawner.enemyMoveSpeed += enemyMoveSpeedScaling;
+            enemySpawner.moddedEnemyMoveSpeed += enemyMoveSpeedScaling;
         }
-        if (enemySpawner.spawnIntervalInSeconds > .5)
+        if (enemySpawner.moddedSpawnInterval > .5)
         {
-            enemySpawner.spawnIntervalInSeconds -= enemySpawnRateScaling;
+            enemySpawner.moddedSpawnInterval -= enemySpawnRateScaling;
         }
         Invoke(nameof(IncreaseDefficulty), difficultyScalingIntervalInSeconds);
     }
@@ -119,10 +120,10 @@ public class PrototypeGame : MonoBehaviour
     //Button funciton for movement speed increase
     public void IncreaseMoveSpeed()
     {
-        if (playerController.moveSpeed < 20)
+        if (playerController.moddedMoveSpeed < 20)
         {
-            playerController.moveSpeed *= playerMoveSpeedMulti;
-            if (playerController.moveSpeed > 20)
+            playerController.moddedMoveSpeed *= playerMoveSpeedMulti;
+            if (playerController.moddedMoveSpeed > 20)
             {
                 LevelUpButtons[0].GetComponentInChildren<TextMeshProUGUI>().text = "Movement Speed Maxed Out";
             }
@@ -133,10 +134,10 @@ public class PrototypeGame : MonoBehaviour
     //Button funciton for fire rate increase
     public void IncreaseFireRate()
     {
-        if (playerAttack.fireRate > .1)
+        if (playerAttack.moddedFireRate > .1)
         {
-            playerAttack.fireRate *= playerFireRateMulti;
-            if (playerController.moveSpeed < .1)
+            playerAttack.moddedFireRate *= playerFireRateMulti;
+            if (playerAttack.moddedFireRate < .1)
             {
                 LevelUpButtons[1].GetComponentInChildren<TextMeshProUGUI>().text = "Fire Rate Maxed Out";
             }
@@ -162,19 +163,23 @@ public class PrototypeGame : MonoBehaviour
         Time.timeScale = 1;
     }
 
-
+    //Freezes time and activates game over menu
     void GameOver()
     {
         gameOverUI.SetActive(true);
         Time.timeScale = 0;
+        maxExp = 3;
+        currentEXP = 0;
     }
 
+    //Restarts the scene
     public void Restart()
     {
         Time.timeScale = 1;
         SceneManager.LoadScene("Main-Prototype 1");
     }
 
+    //Loads the main menu scene
     public void MainMenu()
     {
         Time.timeScale = 1;
